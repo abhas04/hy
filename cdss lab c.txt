@@ -1,0 +1,10 @@
+4}
+//lex yacc execution //
+
+gedit p4.l
+gedit p4.y
+lex p4.l
+yacc -d p4.y
+cc lex.yy.c y.tab.c -lfl
+./a.out
+******************************
