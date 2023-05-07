@@ -1,0 +1,289 @@
+https://github.com/Deepak-B-G/CDSS
+
+*******************************************
+1 A}
+Program to count the number, words, spaces and lines in a given input file Code: 
+
+
+%{ 
+#include<stdio.h> 
+int c=0; 
+int w=0; 
+int s=0; 
+int l=0; 
+%} 
+%% 
+" " { s++; w++;} 
+[\n] { l++; w++;} 
+[\t\n] {w++;} 
+[^\t\n] {c++;} 
+%% 
+int yywrap() 
+{ 
+return 1; 
+} 
+int main() 
+{ 
+yyin=fopen("Info.txt", "r"); 
+yylex(); 
+printf("Characters = %d\nWords = %d\nSpaces = %d\nLines= %d\n",c,w,s,l); return 0; 
+} 
+
+**Input file:  Info.txt **
+		hello 
+		this is an information text
+**output :--
+
+lex p1.l
+cc lex.yy.c -ll
+./a.out
+
+charchter = 28
+words = 6
+spaces = 4
+lines = 2
+**********************************************************
+
+1 B}
+Program to recognize and count the number of identifiers in a file Code: 
+
+%{ 
+#include<stdio.h> 
+int i=0; 
+%} 
+digit [0-9] 
+letter [a-z A-Z_] 
+%% 
+{letter}({letter}|{digit})* {i++;} 
+{digit}({letter}|{digit})* {i;} 
+%% 
+int main() 
+{ 
+printf("Enter the values:\n");
+yylex(); 
+printf("Number of identifiers = %d\n", i); 
+return 0; 
+} 
+
+**Output: **
+ 
+gedit p1b.l
+lex p1b.l
+cc lex.yy.c -ll
+./a.out
+
+enter the value :
+a_b
+
+   // {ctrl+d}
+number of identifiers = 3
+***********************************************************
+2 A }
+Programs to count the numbers of comments lines in a given C program. Also  eliminate them and copy the resulting program into separate file. 
+Code: 
+
+%{ 
+#include<stdio.h> 
+int s=0,m=0; 
+%} 
+%% 
+"/*"[a-zA-Z0-9' '\t\n]*"*/" m++; 
+"//".* s++; 
+%% 
+void main(){ 
+yyin=fopen("f1.txt","r"); 
+yyout=fopen("f2.txt","w");
+yylex(); 
+fclose(yyin); 
+fclose(yyout); 
+printf("no of single line comments=%d\n",s); 
+printf("no of multi line comments=%d\n",m); 
+} 
+int yywrap() 
+{ 
+return 1; 
+} 
+
+** input file = f1.txt -->**
+
+/* write a c
+program
+to print
+hello world*/
+voif main()//main function
+{
+printf("hello world"); //printing hello world
+}
+/* this will be the 
+output 0f the program*/
+
+** input file = f2.txt -->**
+
+void main()
+{
+printf("hello world");
+}
+
+  **output:**
+
+gedit 2a.l
+gedit f1.txt
+gedit f2.txt
+lex 2a.l
+cc lex.yy.c -ll
+./a.out
+
+no of single lines comments = 2
+no of multi lines comments = 2
+*********************************************************
+2 B }
+
+Program to recognize whether a given sentence is simple or compound. Code: 
+
+%{ 
+#include<stdio.h> 
+int c=0; 
+%} 
+%% 
+[a-zA-Z]*[ ](and|or|but|yet|so)[ ][a-zA-Z]* {c=1;} 
+.|[\n]; 
+%% 
+int yywrap() 
+{ 
+return 1; 
+} 
+void main(){ 
+printf("enter the text\n"); 
+yylex(); 
+if(c) 
+{ 
+printf("The given statement is compound\n"); 
+} 
+else 
+{
+printf("The given statement is simple\n"); 
+} 
+} 
+
+** output **
+
+gedit 2b.l
+lex 2b.l
+cc lex.yy.c -ll
+./a.out
+
+enter the text 
+i like to play football and fifa.
+  // ( ctrl+d)
+***********************************************************
+ 3 A }
+
+Program to count number of: 
+i.+ve and -ve integers 
+ii. +ve and -ve fractions  
+
+%{ 
+#include<stdio.h> 
+int pi=0,ni=0,pf=0,nf=0; 
+%} 
+%% 
+[-][0-9]+ {ni++;} 
+[+]?[0-9]+ {pi++;} 
+[-][0-9]*\.[0-9]+ {nf++;} 
+[+]?[0-9]*\.[0-9]+ {pf++;} 
+%%
+void main(int argc,char *argv[]) 
+{ 
+if(argc!=2) 
+{ 
+printf("usage :./a.out in.txt \n"); 
+exit(0); 
+} 
+yyin=fopen(argv[1],"r"); 
+yylex(); 
+printf("Number of positive integer %d\n",pi); 
+printf("Number of negative integer %d\n",ni); 
+printf("Number of positive fraction %d\n",pf); 
+printf("Number of negative fraction %d\n",nf); 
+} 
+int yywrap(){ 
+return 1; 
+}
+
+ **input file = in.txt**
+
+1
+2
+.64
+.8
+8.73
+3.92
+8.38
+
+ ** output **
+
+gedit 3a.l
+gedit in.txt
+lex 3a.l
+cc lex.yy.c -ll
+./a.out in.txt
+
+**************************************************
+3 B }
+
+Program to count the number of “scanf” and “printf” statements in a C program.  Replace them with “readf” and “writef” statements respectively. 
+Code: 
+
+%{ 
+#include<stdio.h> 
+int sf=0,pf=0; 
+%} 
+%% 
+"scanf" {sf++; fprintf(yyout,"readf");} 
+"printf" {pf++; fprintf(yyout,"writef");} 
+%% 
+int main() 
+{ 
+yyin=fopen("f1.c","r"); 
+yyout=fopen("f2.c","w"); 
+yylex(); 
+printf("no of scanf =%d\n no of printf =%d\n",sf,pf); 
+return 0; 
+}
+
+**input file= f1.c **
+
+#include<stdio.h>
+int main()
+{
+int a,b,c;
+printf("enter the value of a and b\n");
+scanf("%d%d",&a,&b);
+c=a+b;
+printf("sum=%d",c);
+return 0;
+}
+
+**input file= f2.c **
+
+#include<stdio.h>
+int main()
+{
+int a,b,c;
+writef("enter the value of a and b\n");
+readf("%d%d",&a,&b);
+c=a+b;
+writef("sum=%d",c);
+return 0;
+}
+
+ **output**
+
+gedit 3b.l
+gedit f1.c
+gedit f2.c
+lex 3b.l
+cc lex.yy.c -ll
+./a.out
+
+*******************************************************
