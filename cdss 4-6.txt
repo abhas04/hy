@@ -50,16 +50,23 @@ printf("Enter the expression:\n");
 yyparse(); 
 } 
 
- **output**
+ **** output ****
 
 //lex yacc execution //
 
-gedit p4.l
-gedit p4.y
-lex p4.l
-yacc -d p4.y
+gedit 4.l
+gedit 4.y
+
+lex 4.l
+yacc -d 4.y
 cc lex.yy.c y.tab.c -lfl
 ./a.out
+
+2+4
+6
+
+5*6
+30
 ***********************************************
 5 }
 Program to recognize a valid variable which starts with a letter, followed by any  number of letter or digits 
@@ -101,14 +108,20 @@ printf("Invalid Variable\n");
 exit(0); 
 } 
 
-**output**
+**** output ****
 
 gedit p5.l
 gedit p5.y
+
 lex p5.l
 yacc -d p5.y
 cc lex.yy.c y.tab.c -lfl
 ./a.out
+
+type the variable :
+abc123
+123jkl
+
 **********************************************
 6.}
 
@@ -154,13 +167,18 @@ exit(0);
 } 
 
 
-**output**
+**** output ****
 
 gedit p6.l
 gedit p6.y
+
 lex p6.l
 yacc -d p6.y
 cc lex.yy.c y.tab.c -lfl
 ./a.out
+
+
+aabb
+aabc
 
 **********************************************
