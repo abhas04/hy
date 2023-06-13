@@ -31,7 +31,7 @@ yylex();
 printf("Characters = %d\nWords = %d\nSpaces = %d\nLines= %d\n",c,w,s,l); return 0; 
 } 
 
-**Input file:  Info.txt **
+****Input file:  Info.txt ****
 		hello 
 		this is an information text
 **output :--
@@ -67,7 +67,7 @@ printf("Number of identifiers = %d\n", i);
 return 0; 
 } 
 
-**Output: **
+****Output: ****
  
 gedit p1b.l
 lex p1b.l
@@ -76,8 +76,11 @@ cc lex.yy.c -ll
 
 enter the value :
 a_b
+113h
+h3h
 
-   // {ctrl+d}
+
+   // {ctrl+d}  //
 number of identifiers = 3
 ***********************************************************
 2 A }
@@ -106,7 +109,7 @@ int yywrap()
 return 1; 
 } 
 
-** input file = f1.txt -->**
+**** input file = f1.txt --> ****
 
 /* write a c
 program
@@ -119,14 +122,14 @@ printf("hello world"); //printing hello world
 /* this will be the 
 output 0f the program*/
 
-** input file = f2.txt -->**
+**** input file = f2.txt --> ****
 
 void main()
 {
 printf("hello world");
 }
 
-  **output:**
+  ****output:****
 
 gedit 2a.l
 gedit f1.txt
@@ -174,9 +177,10 @@ lex 2b.l
 cc lex.yy.c -ll
 ./a.out
 
-enter the text 
-i like to play football and fifa.
-  // ( ctrl+d)
+enter the text :
+i like to play football and circket
+
+  // ( ctrl+d) //
 ***********************************************************
  3 A }
 
@@ -212,7 +216,7 @@ int yywrap(){
 return 1; 
 }
 
- **input file = in.txt**
+ ****input file = in.txt****
 
 1
 2
@@ -253,7 +257,7 @@ printf("no of scanf =%d\n no of printf =%d\n",sf,pf);
 return 0; 
 }
 
-**input file= f1.c **
+**** input file= f1.c  ****
 
 #include<stdio.h>
 int main()
@@ -266,7 +270,7 @@ printf("sum=%d",c);
 return 0;
 }
 
-**input file= f2.c **
+**** input file= f2.c  ****
 
 #include<stdio.h>
 int main()
@@ -279,7 +283,7 @@ writef("sum=%d",c);
 return 0;
 }
 
- **output**
+ **** output ****
 
 gedit 3b.l
 gedit f1.c
