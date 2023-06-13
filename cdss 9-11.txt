@@ -46,7 +46,8 @@ else if(islower(prodn[j][2]))first[n++]=prodn[j][2]; else FIRST(prodn[j][2]);
 } 
 } 
 
-**OUTPUT**
+
+****** OUTPUT *******
 
 enter the number of production : 8
 enter 8 productions:
@@ -62,9 +63,20 @@ F=(E)
 F=a
 Element : E
 
-FIRST(E)={ (A}
+FIRST(E)={ (a}
 Press 1 to continue: 1
 element: D
+
+FIRST(E)={ + $}
+Press 1 to continue: 1
+element: T
+
+FIRST(E)={ ( a}
+Press 1 to continue: 1
+element: S
+
+FIRST(E)={ * $}
+Press 1 to continue: 0
 
 ******************************************************
 10.}
@@ -137,8 +149,9 @@ i=i-2;
 } } 
 
 
-**OUTPUT**
-
+**** OUTPUT ****
+ id+id*id
+ 
 ******************************************************
 11.}
 
