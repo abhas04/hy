@@ -156,7 +156,7 @@ while(!feof(fp));
 }
 
 
-*input file = abssrc.txt**
+**** input file = abssrc.txt  ****
 
 H^SAMPLE^001000^0035
 T^001000^0C^001003^071009$
@@ -164,9 +164,11 @@ T^002000^03^111111$
 E^001000
 
 
-**OUTPUT**
+**** OUTPUT ****
 gedit p8.c
 gcc p8.c
 ./a.out
+
+enter program name: SAMPLE
 
 ******************************************************
